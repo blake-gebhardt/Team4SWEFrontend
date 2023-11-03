@@ -22,12 +22,31 @@ const StudentProfile: React.FC = () => {
     document.getElementById('profileUpload')?.click();
   }
 
+  // Function to handle the change of the profile image file
   function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
-    // Handle image file upload
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const uploadedImage = e.target?.result as string;
+        setProfileImage(uploadedImage);
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
+
+  // Function to handle the change of the resume file
   function handleResumeChange(event: React.ChangeEvent<HTMLInputElement>) {
-    // Handle resume file upload
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const uploadedResume = e.target?.result as string;
+        setResume(uploadedResume);
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
   return (
